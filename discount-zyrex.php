@@ -7,7 +7,10 @@ Author: Zyrex
 Author URI: http://zyrex.pl
 Plugin URI: http://zyrex.pl/plugin/discount
 */
+//require_once 'class/configuration.php';
+require_once(plugin_dir_path(__FILE__) . '/class/Autoloader.php');
 
+$zxconfig = new ZxDiscounts\Configuration();
 // Funkcja aktywacyjna
 function discount_zyrex_activate() {
     // Tworzenie tabel w bazie danych

@@ -1,5 +1,8 @@
 <?php
-class DiscountZyrexPlugin {
+
+namespace ZxDiscounts;
+
+class Configuration {
     public function __construct() {
         // Dodaj akcje do ładowania strony z formularzem
         add_action('admin_menu', array($this, 'add_admin_menu'));
@@ -10,12 +13,11 @@ class DiscountZyrexPlugin {
         add_menu_page('Dodaj Rabat', 'Dodaj Rabat', 'manage_options', 'dodaj-rabat', array($this, 'render_admin_page'));
     }
 //tablica wszystkich dostępnych produktów
-    function get_available_products() {
+    public function get_available_products() {
         $products = wc_get_products(array(
             'status' => 'publish', // Ograniczenie do opublikowanych produktów
         ));
         $product_options = array();
-
         foreach ($products as $product) {
             $product_options[$product->get_id()] = $product->get_name();
         }
@@ -24,8 +26,9 @@ class DiscountZyrexPlugin {
     }
 
     public function render_admin_page() {
+      echo '<link rel="stylesheet" type="text/css" href="' . plugin_dir_url(__FILE__) . '/admin/css/style.css">';
       // Pobierz dostępne produkty
-        $product_options = get_available_products();
+        $product_options = $this->get_available_products();
         echo '<div class="wrap">';
         echo '<h2>Dodaj Rabat</h2>';
         echo '<form method="post">';
