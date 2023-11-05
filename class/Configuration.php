@@ -29,7 +29,7 @@ class Configuration {
       echo '<link rel="stylesheet" type="text/css" href="' . plugin_dir_url(__FILE__) . '/admin/css/style.css">';
       // Pobierz dostępne produkty
         $product_options = $this->get_available_products();
-        echo '<div class="wrap">';
+        echo '<div class="zx-container">';
         echo '<h2>Dodaj Rabat</h2>';
         echo '<form method="post">';
         echo '<label for="product_ids">Wybierz produkty:</label>';

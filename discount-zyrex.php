@@ -7,8 +7,18 @@ Author: Zyrex
 Author URI: http://zyrex.pl
 Plugin URI: http://zyrex.pl/plugin/discount
 */
-//require_once 'class/configuration.php';
+//Autoloader
 require_once(plugin_dir_path(__FILE__) . '/class/Autoloader.php');
+
+//dodajemy pliki ze stylami i js
+add_action('admin_enqueue_scripts', 'discount_zyrex_enqueue_styles_and_scripts');
+function discount_zyrex_enqueue_styles_and_scripts() {
+    // Zarejestruj styl w panelu administracyjnym
+    wp_register_style('discount-zyrex-admin-style', plugins_url('admin/css/style.css', __FILE__));
+    // Dodaj zarejestrowany styl do panelu administracyjnego
+    wp_enqueue_style('discount-zyrex-admin-style');
+}
+
 
 $zxconfig = new ZxDiscounts\Configuration();
 // Funkcja aktywacyjna
